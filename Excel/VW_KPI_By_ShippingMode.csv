@@ -1,0 +1,5 @@
+shipping_mode,total_orders,total_revenue,otd_rate_pct,otif_rate_pct,sla_breach_pct,perfect_order_pct,avg_actual_days,avg_promised_days,avg_days_variance,pct_of_total_orders
+"First Class",27814,5674369.76,0,0,100,0,2,1,1,15.4
+"Same Day",9737,1942528.56,49.7,49.7,47.8,17,0.5,0,0.5,5.4
+"Second Class",35216,7145444.82,19.4,19.4,79.7,6.7,4,2,2,19.5
+"Standard Class",107752,22022391.88,57.7,57.7,39.8,19.7,4,4,0,59.7

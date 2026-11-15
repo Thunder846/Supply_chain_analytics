@@ -1,0 +1,2 @@
+total_line_items,total_orders,total_units_sold,total_revenue,total_profit,profit_margin_pct,otd_rate_pct,otif_rate_pct,sla_breach_pct,perfect_order_pct,complete_order_pct,avg_days_to_ship,avg_days_variance
+180519,65752,384079,36784735.01,3966902.97,10.8,40.9,40.9,57.3,14,33,3.5,0.6
