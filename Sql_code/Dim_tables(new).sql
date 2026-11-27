@@ -81,7 +81,9 @@ CREATE TABLE dbo.DimYear (
     YearValue INT UNIQUE
 );
 GO
-
+---------------------------------------------------------------------------------------------------
+--This is where we transfer the descriptive data from the staging layer into the dimension layer.--
+---------------------------------------------------------------------------------------------------
 USE Supply_chain_anal;
 GO
 
@@ -155,3 +157,5 @@ SELECT DISTINCT TRY_CONVERT(INT, order_year)
 FROM stg.Region_2
 WHERE TRY_CONVERT(INT, order_year) IS NOT NULL;
 GO
+
+
