@@ -1,54 +1,99 @@
--- ============================================================
--- STEP 2: CREATE STAGING TABLE
--- Why: Staging table mirrors the CSV exactly.
---      All columns VARCHAR first — we validate then convert.
---      This is industry standard ETL practice.
--- ============================================================
-
-USE SupplyChainDB;
+--Here we can directly use Insert and stg table because we already know the contents of the table and the table itself.
+USE Supply_chain_anal;
 GO
 
-DROP TABLE IF EXISTS dbo.stg_supplychain;
-
-CREATE TABLE dbo.stg_supplychain (
-    payment_type              VARCHAR(50),
-    days_shipping_real        INT,
-    days_shipping_scheduled   INT,
-    late_delivery_risk        INT,
-    delivery_status           VARCHAR(50),
-    shipping_mode             VARCHAR(50),
-    order_region              VARCHAR(100),
-    order_status              VARCHAR(50),
-    order_id                  INT,
-    order_item_id             INT,
-    order_qty                 INT,
-    unit_price                FLOAT,
-    sales                     FLOAT,
-    discount                  FLOAT,
-    profit                    FLOAT,
-    customer_city             VARCHAR(100),
-    customer_country          VARCHAR(100),
-    customer_segment          VARCHAR(50),
-    customer_state            VARCHAR(100),
-    product_name              VARCHAR(200),
-    category_name             VARCHAR(100),
-    department_name           VARCHAR(100),
-    market                    VARCHAR(100),
-    order_date                DATETIME,
-    ship_date                 DATETIME,
-    order_year                INT,
-    order_month               INT,
-    order_quarter             INT,
-    order_dow                 VARCHAR(20),
-    is_full_year              INT,
-    is_on_time                INT,
-    is_complete               INT,
-    is_qty_fulfilled          INT,
-    is_otif                   INT,
-    is_sla_breach             INT,
-    days_variance             INT,
-    is_perfect_order          INT
+-- CATEGORY
+BULK INSERT stg.Category
+FROM 'C:\SupplyChainData\Category.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
 );
-GO
 
-PRINT 'Staging table created — 37 columns ready for import';
+-- DATE
+BULK INSERT stg.Date
+FROM 'C:\SupplyChainData\Date.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
+
+-- MONTH
+BULK INSERT stg.Month
+FROM 'C:\SupplyChainData\Month.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
+
+-- MONTHLY TREND
+BULK INSERT stg.Monthly_Trend
+FROM 'C:\SupplyChainData\Monthly_Trend.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
+
+-- REGION
+BULK INSERT stg.Region
+FROM 'C:\SupplyChainData\Region.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
+
+-- REGION 2
+BULK INSERT stg.Region_2
+FROM 'C:\SupplyChainData\Region_2.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
+
+-- SHIPPING
+BULK INSERT stg.Shipping
+FROM 'C:\SupplyChainData\Shipping.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
+
+-- SHIPPING MODE
+BULK INSERT stg.ShippingMode
+FROM 'C:\SupplyChainData\ShippingMode.csv'
+WITH (
+    FORMAT = 'CSV',
+    FIRSTROW = 2,
+    FIELDQUOTE = '"',
+    CODEPAGE = '65001',
+    ROWTERMINATOR = '0x0a',
+    TABLOCK
+);
