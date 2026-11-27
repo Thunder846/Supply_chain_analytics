@@ -1,8 +1,7 @@
--- ============================================================
--- STEP 3: BULK IMPORT CLEAN CSV INTO STAGING TABLE
--- Why: BULK INSERT loads 180,000 rows in seconds.
---      Much faster than SSMS Import Wizard for large files.
--- ============================================================
+----------------------------------------------------
+--Only applicable if a Single large table is given--
+----------------------------------------------------
+--(Early code)--
 
 USE SupplyChainDB;
 GO
@@ -10,7 +9,7 @@ GO
 BULK INSERT dbo.stg_supplychain
 FROM 'D:\AG\Supply chain project\Python\supplychain_clean.csv'
 WITH (
-    FIRSTROW        = 2,      -- Row 1 is the header, start data from row 2
+    FIRSTROW        = 2,      -- Row 1 is the header, start data from row 
     FIELDTERMINATOR = ',',    -- Columns are separated by commas
     ROWTERMINATOR   = '\n',   -- Each row ends with a new line
     TABLOCK                   -- Lock the whole table for faster loading
