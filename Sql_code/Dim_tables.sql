@@ -81,3 +81,77 @@ CREATE TABLE dbo.DimYear (
     YearValue INT UNIQUE
 );
 GO
+
+USE Supply_chain_anal;
+GO
+
+-- DIM DATE
+INSERT INTO dbo.DimDate
+SELECT
+    TRY_CONVERT(INT, date_key),
+    TRY_CONVERT(DATE, full_date),
+    TRY_CONVERT(INT, [year]),
+    TRY_CONVERT(INT, [quarter]),
+    TRY_CONVERT(INT, [month]),
+    month_name,
+    TRY_CONVERT(INT, [week]),
+    TRY_CONVERT(INT, day_of_month),
+    day_name,
+    TRY_CONVERT(BIT, is_weekend),
+    TRY_CONVERT(BIT, is_full_year),
+    year_month
+FROM stg.Date;
+GO
+
+-- DIM MONTH
+INSERT INTO dbo.DimMonth (
+    YearMonth, OrderYear, OrderMonth,
+    OrderQuarter, MonthName, MonthSortKey
+)
+SELECT DISTINCT
+    year_month,
+    TRY_CONVERT(INT, order_year),
+    TRY_CONVERT(INT, order_month),
+    TRY_CONVERT(INT, order_quarter),
+    month_name,
+    TRY_CONVERT(INT, month_sort_key)
+FROM stg.Month;
+GO
+
+-- DIM REGION
+INSERT INTO dbo.DimRegion (
+    RegionKey, OrderRegion, Market
+)
+SELECT
+    TRY_CONVERT(INT, region_key),
+    order_region,
+    market
+FROM stg.Region;
+GO
+
+-- DIM SHIPPING
+INSERT INTO dbo.DimShipping (
+    ShippingKey, ShippingMode
+)
+SELECT
+    TRY_CONVERT(INT, shipping_key),
+    shipping_mode
+FROM stg.Shipping;
+GO
+
+-- DIM CATEGORY
+INSERT INTO dbo.DimCategory (
+    DepartmentName, CategoryName
+)
+SELECT DISTINCT
+    department_name,
+    category_name
+FROM stg.Category;
+GO
+
+-- DIM YEAR
+INSERT INTO dbo.DimYear (YearValue)
+SELECT DISTINCT TRY_CONVERT(INT, order_year)
+FROM stg.Region_2
+WHERE TRY_CONVERT(INT, order_year) IS NOT NULL;
+GO
