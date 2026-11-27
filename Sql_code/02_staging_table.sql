@@ -118,9 +118,5 @@ UNION ALL
 SELECT 'Shipping', COUNT(*) FROM stg.Shipping
 UNION ALL
 SELECT 'ShippingMode', COUNT(*) FROM stg.ShippingMode
-UNION ALL
-SELECT 'SLA_Heatmap', COUNT(*) FROM stg.SLA_Heatmap
-UNION ALL
-SELECT 'Summary', COUNT(*) FROM stg.Summary;
 GO
 --Shows the no of rows--
