@@ -1,24 +1,22 @@
--- ============================================================
--- CREATE DATABASE
--- ============================================================
+---------------------
+-- CREATE DATABASE --
+---------------------
 
 USE master;
 GO
 
--- Drop if exists (clean start)
-IF EXISTS (SELECT name FROM sys.databases WHERE name = 'SupplyChainDB')
-BEGIN
-    ALTER DATABASE SupplyChainDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+--Drop the Database, If it exist--
+    
+IF DB_ID('SupplyChainDB') IS NOT NULL
     DROP DATABASE SupplyChainDB;
-END
 GO
 
--- Create fresh database
 CREATE DATABASE SupplyChainDB;
 GO
 
--- Switch into it
 USE SupplyChainDB;
 GO
 
+--Show Successful completion--
+    
 PRINT ' SupplyChainDB created successfully';
