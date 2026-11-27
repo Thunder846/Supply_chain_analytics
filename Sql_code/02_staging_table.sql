@@ -97,3 +97,30 @@ WITH (
     ROWTERMINATOR = '0x0a',
     TABLOCK
 );
+
+--Validate Import--
+
+USE Supply_chain_anal;
+GO
+
+SELECT 'Category' AS Table_Name, COUNT(*) AS Total_Rows FROM stg.Category
+UNION ALL
+SELECT 'Date', COUNT(*) FROM stg.Date
+UNION ALL
+SELECT 'Month', COUNT(*) FROM stg.Month
+UNION ALL
+SELECT 'Monthly_Trend', COUNT(*) FROM stg.Monthly_Trend
+UNION ALL
+SELECT 'Region', COUNT(*) FROM stg.Region
+UNION ALL
+SELECT 'Region_2', COUNT(*) FROM stg.Region_2
+UNION ALL
+SELECT 'Shipping', COUNT(*) FROM stg.Shipping
+UNION ALL
+SELECT 'ShippingMode', COUNT(*) FROM stg.ShippingMode
+UNION ALL
+SELECT 'SLA_Heatmap', COUNT(*) FROM stg.SLA_Heatmap
+UNION ALL
+SELECT 'Summary', COUNT(*) FROM stg.Summary;
+GO
+--Shows the no of rows--
